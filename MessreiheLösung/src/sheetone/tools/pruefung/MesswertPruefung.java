@@ -1,14 +1,14 @@
 package sheetone.tools.pruefung;
 
-
-
-
 import sheetone.messdaten.Messwert;
 
 public class MesswertPruefung implements IMesswertPruefung{
 
 
 	
+	/* Überprüft das array auf Nullstellen, die auf ein Fehlerhaftes Verhalten beim adden hindeuten
+	 * @see sheetone.tools.pruefung.IMesswertPruefung#checkForEmptySpaces(sheetone.messdaten.Messwert[])
+	 */
 	public  boolean checkForEmptySpaces(Messwert[] messwerte) {
 	
 		for (Messwert messwert : messwerte) {
@@ -22,6 +22,10 @@ public class MesswertPruefung implements IMesswertPruefung{
 	}
 
 
+	/* Diese Methode überprüft für jeden Wert ob er sich innerhalb eines Wertebereichs liegt. Bei Interesse kann ich das gleiche Verhalten unter
+	 * Verwendung von regulären Ausdrücken zeigen
+	 * @see sheetone.tools.pruefung.IMesswertPruefung#checkSkalaValuation(sheetone.messdaten.Messwert[], double, double)
+	 */
 	public  boolean checkSkalaValuation(Messwert[] messwerte, double min,
 			double max) {
 

@@ -17,6 +17,12 @@ public class TemperaturMessreihe extends Messreihe {
 		this.skala = skala;
 	}
 
+	
+	/* Erstellt aus dem messwert und dem datum eine Temperatur und f[gt diese in das array falls platz ist
+	 * ansonsten wird eine Exception geworfen. Diese Exception muss in der Methodendeklaration angekündigt werden,
+	 * damit aufrufender Code die Exception mit try/catch abfangen oder nach oben weiterreichen kann.
+	 * @see sheetone.messdaten.Messreihe#addMesswert(double, java.util.GregorianCalendar)
+	 */
 	@Override
 	public void addMesswert(double messwert, GregorianCalendar datum)
 			throws IndexOutOfBoundsException {
@@ -29,10 +35,23 @@ public class TemperaturMessreihe extends Messreihe {
 		}
 	}
 
+	
 	@Override
 	public Temperatur getMesswert(GregorianCalendar datum) throws IllegalArgumentException {
 
-		for (Messwert messung : this.messwerte) {
+		/** 
+		 * Eine sog. foreach Schleife
+		 * syntax (Datentyp variablenname : container)
+		 * Es wird zunächst der Datentyp der Elemente im Container genannt, anschließend ein variablen Name und
+		 * zum schluss der container (array,liste,map etc) durch das iteriert werden soll.
+		 * Java nimmt dann jeden einzelnen wert aus dem Array und packt ihn in die variable.
+		 * Vorteile: 
+		 * -	kürzere Schreibweise
+		 * -	keine Fehler durch falsche längen angaben
+		 * Nachteile:
+		 * -	kein index
+		 * **/
+		for(Messwert messung : this.messwerte) {
 			if (messung.getMessDatum().equals(datum)) {
 				if(!(messung instanceof Temperatur)){
 					throw new IllegalArgumentException("the container contains wrong types");}
@@ -43,6 +62,11 @@ public class TemperaturMessreihe extends Messreihe {
 		return null;
 	}
 
+	
+	/* Aufruf der Prüfung.Setzt das Attribute der Klasse auf true oder false, daran lässt sich von außen schnell erkennen
+	 * ob die Klasse erfolgreich validiert wurde.
+	 * @see sheetone.messdaten.Messreihe#runValidation(double, double)
+	 */
 	@Override
 	public void runValidation(double min,double max) {
 		MesswertPruefung pruefung = new MesswertPruefung();
@@ -52,6 +76,9 @@ public class TemperaturMessreihe extends Messreihe {
 
 	
 	
+	/**Print ist eine allgemeine alternative zu toString()
+	 * @return
+	 */
 	public String print() {
 		// TODO Auto-generated method stub
 		StringBuilder builder = new StringBuilder();

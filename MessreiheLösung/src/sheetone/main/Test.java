@@ -1,5 +1,6 @@
 package sheetone.main;
 
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 import sheetone.custom.enums.Skala;
@@ -10,7 +11,10 @@ public class Test {
 	
 	public static void main(String[] args) {
 		
-		GregorianCalendar calender = new GregorianCalendar(2015, 10, 15);
+		//deklarationen können hintereinander geschrieben werden, falls sie den gleichen Datentyp haben
+		int skalaUntergrenze = -273, skalaObergrenze = 273;
+		
+		GregorianCalendar calender = new GregorianCalendar();
 		int messungen = 12;
 		TemperaturMessreihe tempMessreihe = new TemperaturMessreihe(messungen, Skala.CELSIUS);
 		
@@ -20,7 +24,7 @@ public class Test {
 			tempMessreihe.addMesswert(messwert, calender);
 		}
 		
-		tempMessreihe.runValidation(-273, 273);
+		tempMessreihe.runValidation(skalaUntergrenze, skalaObergrenze);
 		
 		System.out.println(tempMessreihe.print());
 		
